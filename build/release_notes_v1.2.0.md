@@ -1,6 +1,6 @@
 First public release.
 
-This release removes the per-frame garbage that DynamicBoneDistributionEditor (DBDE) creates in the character maker and CharaStudio. That garbage causes periodic "the whole game freezes for half a second" stutter, especially after loading outfits. See the [README](../../#readme) for details and measurements.
+This release removes the per-frame garbage that DynamicBoneDistributionEditor (DBDE) creates in the character maker and CharaStudio. That garbage causes periodic "the whole game freezes for half a second" stutter, especially after loading outfits. See the [README](https://github.com/Jotorola-scv/DBDE-LookupCache#readme) for details and measurements.
 
 ### Downloads
 | Game | File |
