@@ -48,8 +48,9 @@ The worst case is that a dynamic bone spawned outside DBDE's own refresh events 
 | | Before | After |
 |---|---|---|
 | Garbage from DBDE per 10 s | 24–66 MB | ~2 MB (same level as vanilla UI code) |
-| DBDE CPU time per frame | ~2–3 ms | negligible |
-| Frames rendered per 10 s (same test, profiler attached) | 283–537 | ~850–1000 |
+| DBDE CPU time per frame | ~1–3 ms | < 0.1 ms |
+
+Test system: Ryzen 9 9950X3D, measured with a profiler attached. The garbage figure depends mostly on how many characters and DBDE edits are loaded, not on your hardware. CPU time depends on your CPU. Overall FPS depends on your whole PC and scene, so no FPS figure is given here.
 
 In CharaStudio every character runs this per frame, so scenes with many characters benefit more.
 
@@ -159,8 +160,9 @@ DBDE 每一幀都會對每個角色目前服裝的每一筆編輯，查詢對應
 | | 修正前 | 修正後 |
 |---|---|---|
 | DBDE 每 10 秒產生的垃圾 | 24–66 MB | 約 2 MB |
-| DBDE 每幀 CPU 時間 | 約 2–3 ms | 幾乎為 0 |
-| 每 10 秒幀數（同樣的測試條件） | 283–537 | 約 850–1000 |
+| DBDE 每幀 CPU 時間 | 約 1–3 ms | 不到 0.1 ms |
+
+測試環境：Ryzen 9 9950X3D，量測時掛著分析工具。記憶體垃圾量主要取決於角色和 DBDE 編輯的數量，跟硬體關係不大；CPU 時間會隨 CPU 而不同。整體 FPS 取決於整台電腦和場景，所以這裡不提供 FPS 數據。
 
 Studio 裡每個角色都會各自執行這個流程，角色越多效果越明顯。
 
