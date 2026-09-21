@@ -12,7 +12,7 @@ If you have DBDE installed and see any of these, this plugin is for you:
 
 - **The character maker freezes for ~0.5 s every few seconds**, typically **after loading an outfit / coordinate card**
 - The maker keeps **stuttering even when you do nothing** (no camera movement, no clicking)
-- **CharaStudio framerate is unstable or drops** with characters that use dynamic bones, and it gets worse the more characters are in the scene
+- **CharaStudio freezes briefly every so often** with characters that use dynamic bones, and it gets worse the more characters are in the scene
 - Frequent **GC spikes** / "hitches" in a profiler, with lots of memory being allocated every frame
 
 It does **not** fix DBDE's functional bugs (UI, saving/loading, accessory transfer…). Please report those to [DBDE](https://github.com/Njaecha/DynamicBoneDistributionEditor/issues).
@@ -51,6 +51,8 @@ The worst case is that a dynamic bone spawned outside DBDE's own refresh events 
 | DBDE CPU time per frame | ~1–3 ms | < 0.1 ms |
 
 Test system: Ryzen 9 9950X3D, measured with a profiler attached. The garbage figure depends mostly on how many characters and DBDE edits are loaded, not on your hardware. CPU time depends on your CPU. Overall FPS depends on your whole PC and scene, so no FPS figure is given here.
+
+**What to expect:** the plugin reduces the periodic freezes. It does **not** noticeably raise your average FPS. If a scene is slow all the time (many maps, heavy effects), that is rendering load and unrelated to this plugin.
 
 In CharaStudio every character runs this per frame, so scenes with many characters benefit more.
 
@@ -95,7 +97,7 @@ Please open an [issue](../../issues) with:
 
 - Game (KK / KKS), maker or Studio, DBDE version
 - Roughly how many characters, and whether they have DBDE edits
-- What you noticed, e.g. fewer freezes, FPS before and after, or problems
+- What you noticed, e.g. how often the game froze before and after, or problems
 - If something looks wrong: the `DBDE Lookup Cache` lines from `output_log.txt`, and whether it goes away with `Enabled = false`
 
 ## Building
@@ -128,10 +130,10 @@ The output goes to `bin/`. `sh build/package.sh <KK folder> <KKS folder>` builds
 
 - **創角畫面每隔幾秒就突然卡住約 0.5 秒**，特別是**讀取服裝（coordinate）之後**
 - 創角畫面**靜止不動、什麼都沒操作也會卡頓**
-- **Studio 幀率不穩、掉幀**，場景裡使用動態骨骼的角色越多越明顯
+- **Studio 每隔一段時間突然停頓一下**，場景裡使用動態骨骼的角色越多越明顯
 - 記憶體垃圾回收（GC）過於頻繁，造成**週期性的瞬間停頓**
 
-簡體中文關鍵字：恋活 / 恋活 Sunshine 捏人界面卡顿、读取服装后卡顿、突然卡一下、Studio 掉帧、DBDE 卡顿。
+簡體中文關鍵字：恋活 / 恋活 Sunshine 捏人界面卡顿、读取服装后卡顿、突然卡一下、Studio 偶尔卡顿、DBDE 卡顿。
 
 **不處理的問題：** DBDE 本身的功能 bug（UI、存讀檔、飾品轉移等），請回報到 [DBDE 原作](https://github.com/Njaecha/DynamicBoneDistributionEditor/issues)。
 
@@ -164,6 +166,8 @@ DBDE 每一幀都會對每個角色目前服裝的每一筆編輯，查詢對應
 
 測試環境：Ryzen 9 9950X3D，量測時掛著分析工具。記憶體垃圾量主要取決於角色和 DBDE 編輯的數量，跟硬體關係不大；CPU 時間會隨 CPU 而不同。整體 FPS 取決於整台電腦和場景，所以這裡不提供 FPS 數據。
 
+**效果說明：** 這個插件減少的是週期性的瞬間停頓，**不會明顯提升平均 FPS**。如果場景本身一直很低幀（地圖多、特效多），那是渲染負擔，跟這個插件無關。
+
 Studio 裡每個角色都會各自執行這個流程，角色越多效果越明顯。
 
 ### 相容性
@@ -190,7 +194,7 @@ Studio 裡每個角色都會各自執行這個流程，角色越多效果越明�
 
 ### 回報使用結果
 
-歡迎在 [Issues](../../issues) 回報：遊戲（KK/KKS）、創角或 Studio、DBDE 版本、角色數量、使用前後的差異（卡頓頻率、FPS），或遇到的問題以及相關的 log。
+歡迎在 [Issues](../../issues) 回報：遊戲（KK/KKS）、創角或 Studio、DBDE 版本、角色數量、使用前後的差異（停頓的頻率），或遇到的問題以及相關的 log。
 
 ### 製作
 
@@ -208,7 +212,9 @@ Studio 裡每個角色都會各自執行這個流程，角色越多效果越明�
 
 - **キャラメイクで数秒おきに 0.5 秒ほどフリーズする**。特に**コーデ（服装）を読み込んだ後**
 - キャラメイクで**何も操作していなくてもカクつく**
-- **スタジオのフレームレートが不安定、重い**。揺れもの（ダイナミックボーン）を使うキャラが多いほど悪化する
+- **スタジオで時々一瞬フリーズする**。揺れもの（ダイナミックボーン）を使うキャラが多いほど悪化する
+
+※ 減るのは周期的な一時停止です。平均 FPS はほとんど変わりません。
 
 DBDE が毎フレーム生成しているガベージ（不要なメモリ）をなくし、GC による一時停止を減らします。DBDE 本体は変更せず、動作結果も同じです。
 
